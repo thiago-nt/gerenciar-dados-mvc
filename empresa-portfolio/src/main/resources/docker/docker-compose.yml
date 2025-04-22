@@ -1,0 +1,19 @@
+
+services:
+  postgres:
+    image: postgres:15
+    container_name: postgres_empresa
+    environment:
+      POSTGRES_DB: empresa_db
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: root
+    ports:
+      - "5432:5432"
+    volumes:
+      - ./docker/init.sql:/docker-entrypoint-initdb.d/init.sql
+    networks:
+      - empresa-network
+
+networks:
+  empresa-network:
+    driver: bridge

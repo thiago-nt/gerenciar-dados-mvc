@@ -4,8 +4,9 @@ import com.empresa.portfolio.model.Projeto;
 import java.util.List;
 
 public interface ProjetoService {
-    List<Projeto> listAll();
-    Projeto findById(Long id);
-    void saveOrUpdate(Projeto projeto);
-    void delete(Long id);
+
+    List<Projeto> listarTodos();
+    Projeto buscarPorId(Long id);
+    void salvar(Projeto projeto);
+    void excluir(Long id);
 }

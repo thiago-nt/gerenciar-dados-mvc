@@ -14,22 +14,23 @@ public class ProjetoServiceImpl implements ProjetoService {
     private ProjetoRepository projetoRepository;
 
     @Override
-    public List<Projeto> listAll() {
+    public Projeto buscarPorId(Long id) {
+        return projetoRepository.findById(id)
+                .orElseThrow(() -> new RuntimeException("Projeto não encontrado"));
+    }
+
+    @Override
+    public List<Projeto> listarTodos() {
         return projetoRepository.findAll();
     }
 
     @Override
-    public Projeto findById(Long id) {
-        return projetoRepository.findById(id).orElse(null);
-    }
-
-    @Override
-    public void saveOrUpdate(Projeto projeto) {
+    public void salvar(Projeto projeto) {
         projetoRepository.save(projeto);
     }
 
     @Override
-    public void delete(Long id) {
+    public void excluir(Long id) {
         projetoRepository.deleteById(id);
     }
 }

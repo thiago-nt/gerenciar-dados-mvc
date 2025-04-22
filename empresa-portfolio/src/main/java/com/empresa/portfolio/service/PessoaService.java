@@ -4,5 +4,6 @@ import com.empresa.portfolio.model.Pessoa;
 import java.util.List;
 
 public interface PessoaService {
-    List<Pessoa> listGerentes();
+
+    List<Pessoa> buscarGerentes();
 }
