@@ -8,7 +8,7 @@ Sistema para gerenciar os dados do portfólio de projetos de uma empresa, utiliz
 ### Passos para executar:
 
 1. Acesse o diretório docker dentro do resources do projeto `empresa-portifolio` e execute:
-   docker-compose up -d
+   - docker-compose up -d
 
 #### Acesse o front-end em:
 http://localhost:8080/api/projetos
