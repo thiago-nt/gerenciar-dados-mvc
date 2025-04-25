@@ -6,4 +6,7 @@ import java.util.List;
 public interface PessoaService {
 
     List<Pessoa> buscarGerentes();
+
+    Pessoa buscarPorId(Long id);
+
 }

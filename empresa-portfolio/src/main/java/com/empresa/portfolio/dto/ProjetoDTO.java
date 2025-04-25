@@ -1,9 +1,10 @@
 package com.empresa.portfolio.dto;
+
+import com.empresa.portfolio.enumeration.RiscoProjeto;
+import com.empresa.portfolio.enumeration.StatusProjeto;
+import com.empresa.portfolio.model.Pessoa;
 import com.empresa.portfolio.model.Projeto;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 
@@ -19,26 +20,46 @@ public class ProjetoDTO {
     private String dataPrevisaoFim;
     private String dataFim;
     private String descricao;
-    private String status;
+    private StatusProjeto status;
     private Double orcamento;
-    private String risco;
+    private RiscoProjeto risco;
     private Long gerenteId;
 
     public ProjetoDTO(Projeto projeto) {
-        this.id = projeto.getId();
-        this.nome = projeto.getNome();
-        this.dataInicio = formatar(projeto.getDataInicio());
-        this.dataPrevisaoFim = formatar(projeto.getDataPrevisaoFim());
-        this.dataFim = formatar(projeto.getDataFim());
-        this.descricao = projeto.getDescricao();
-        this.status = projeto.getStatus();
-        this.orcamento = projeto.getOrcamento();
-        this.risco = projeto.getRisco();
-        this.gerenteId = projeto.getGerente() != null ? projeto.getGerente().getId() : null;
+        DateTimeFormatter fmt = DateTimeFormatter.ISO_LOCAL_DATE;
+        this.id               = projeto.getId();
+        this.nome             = projeto.getNome();
+        this.dataInicio       = formatar(projeto.getDataInicio(), fmt);
+        this.dataPrevisaoFim  = formatar(projeto.getDataPrevisaoFim(), fmt);
+        this.dataFim          = formatar(projeto.getDataFim(), fmt);
+        this.descricao        = projeto.getDescricao();
+        this.status           = projeto.getStatus();
+        this.orcamento        = projeto.getOrcamento();
+        this.risco            = projeto.getRisco();
+        this.gerenteId        = projeto.getGerente() != null ? projeto.getGerente().getId() : null;
     }
 
-    private String formatar(LocalDate data) {
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
-        return data != null ? data.format(formatter) : null;
+    private String formatar(LocalDate d, DateTimeFormatter fmt) {
+        return d == null ? "" : d.format(fmt);
+    }
+
+    public Projeto toEntity(Pessoa gerente) {
+        DateTimeFormatter fmt = DateTimeFormatter.ISO_LOCAL_DATE;
+        return Projeto.builder()
+                .id(id)
+                .nome(nome)
+                .dataInicio(parse(dataInicio, fmt))
+                .dataPrevisaoFim(parse(dataPrevisaoFim, fmt))
+                .dataFim(parse(dataFim, fmt))
+                .descricao(descricao)
+                .status(status)
+                .orcamento(orcamento)
+                .risco(risco)
+                .gerente(gerente)
+                .build();
+    }
+
+    private LocalDate parse(String s, DateTimeFormatter fmt) {
+        return (s == null || s.isBlank()) ? null : LocalDate.parse(s, fmt);
     }
 }

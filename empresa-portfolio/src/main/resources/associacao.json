@@ -1,0 +1,40 @@
+//Body
+{
+  "idProjeto": 10,
+  "idPessoa": 1,
+  "papel": "Desenvolvedor Back-End"
+}
+
+
+//Response
+{
+  "id": 16,
+  "projeto": {
+    "id": 10,
+    "nome": "App de Controle Financeiro",
+    "dataInicio": "2023-08-01",
+    "dataPrevisaoFim": "2024-02-01",
+    "dataFim": "2024-01-25",
+    "descricao": "Aplicativo mobile para controle de finanças pessoais.",
+    "status": "ENCERRADO",
+    "orcamento": 80000,
+    "risco": null,
+    "gerente": {
+      "id": 3,
+      "nome": "Mariana Silva",
+      "dataNascimento": "1988-11-05",
+      "cpf": "321.654.987-00",
+      "funcionario": true,
+      "gerente": true
+    }
+  },
+  "pessoa": {
+    "id": 1,
+    "nome": "Ana Souza",
+    "dataNascimento": "1985-03-22",
+    "cpf": "123.456.789-00",
+    "funcionario": true,
+    "gerente": true
+  },
+  "papel": "Desenvolvedor Back-End"
+}

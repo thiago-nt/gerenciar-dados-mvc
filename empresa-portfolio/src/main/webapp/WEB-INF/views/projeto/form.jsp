@@ -23,36 +23,35 @@
         <div class="row">
             <div class="col-md-6 mb-3">
                 <label for="dataInicio" class="form-label">Data de Início</label>
-                <form:input path="dataInicio" type="date" cssClass="form-control" id="dataInicio"/>
+                <form:input path="dataInicio" cssClass="form-control" type="date" id="dataInicio" name="dataInicio" value="${projeto.dataInicio}"/>
             </div>
             <div class="col-md-6 mb-3">
                 <label for="dataFim" class="form-label">Data de Fim</label>
-                <form:input path="dataFim" type="date" cssClass="form-control" id="dataFim"/>
+                <form:input path="dataFim" cssClass="form-control" type="date" id="dataFim" name="dataFim" value="${projeto.dataFim}"/>
             </div>
         </div>
         <div class="row">
             <div class="col-md-6 mb-3">
                 <label for="orcamento" class="form-label">Orçamento Total</label>
-                <form:input path="orcamento" type="number" step="0.01" cssClass="form-control" id="orcamento"/>
+                <form:input path="orcamento" type="number" cssClass="form-control" id="orcamento"/>
             </div>
             <div class="col-md-6 mb-3">
                 <label for="dataPrevisaoFim" class="form-label">Previsão de Término</label>
-                <form:input path="dataPrevisaoFim" type="date" cssClass="form-control" id="dataPrevisaoFim"/>
+                <form:input path="dataPrevisaoFim" cssClass="form-control" type="date" id="dataPrevisaoFim" name="dataPrevisaoFim" value="${projeto.dataPrevisaoFim}"/>
             </div>
         </div>
         <div class="mb-3">
             <label for="status" class="form-label">Status</label>
             <form:select path="status" cssClass="form-select" id="status">
                 <form:option value="" label="Selecione o status"/>
-                <form:option value="Planejado" />
-                <form:option value="Iniciado" />
-                <form:option value="Em Andamento" />
-                <form:option value="Encerrado" />
+                <c:forEach var="s" items="${status}">
+                    <form:option value="${s}" label="${s.label}"/>
+                </c:forEach>
             </form:select>
         </div>
         <div class="mb-4">
             <label for="gerente" class="form-label">Gerente</label>
-            <form:select path="gerente.id" cssClass="form-select" id="gerente">
+            <form:select path="gerente.id" items="${gerentes}" cssClass="form-select" itemValue="id" itemLabel="nome">
                 <form:option value="" label="Selecione o gerente"/>
                 <c:forEach var="g" items="${gerentes}">
                     <form:option value="${g.id}" label="${g.nome}"/>

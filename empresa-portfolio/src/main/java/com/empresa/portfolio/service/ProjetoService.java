@@ -9,4 +9,5 @@ public interface ProjetoService {
     Projeto buscarPorId(Long id);
     void salvar(Projeto projeto);
     void excluir(Long id);
+    void excluirProjetoComValidacao(Long id);
 }

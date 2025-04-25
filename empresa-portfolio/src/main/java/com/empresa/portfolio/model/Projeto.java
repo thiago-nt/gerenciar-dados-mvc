@@ -1,5 +1,6 @@
 package com.empresa.portfolio.model;
-
+import com.empresa.portfolio.enumeration.RiscoProjeto;
+import com.empresa.portfolio.enumeration.StatusProjeto;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.*;
 import lombok.*;
@@ -39,20 +40,20 @@ public class Projeto {
     @Column(length = 5000)
     private String descricao;
 
-    @Size(max = 45)
-    @Column(length = 45)
-    private String status;
+    @Enumerated(EnumType.STRING)
+    private StatusProjeto status;
 
-    @Column
+    @PositiveOrZero
+    @Digits(integer = 12, fraction = 2)
     private Double orcamento;
 
-    @Size(max = 45)
-    @Column(length = 45)
-    private String risco;
+    @Enumerated(EnumType.STRING)
+    private RiscoProjeto risco;
 
     @NotNull
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "idgerente", nullable = false,
-            foreignKey = @ForeignKey(name = "fk_gerente"))
+    @ManyToOne()
+    @JoinColumn(name = "idgerente",
+            foreignKey = @ForeignKey(name = "fk_projeto_gerente"))
     private Pessoa gerente;
+
 }
