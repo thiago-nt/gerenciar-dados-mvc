@@ -1,5 +1,7 @@
 package com.empresa.portfolio.service.impl;
 
+import com.empresa.portfolio.dto.PessoaDTO;
+import com.empresa.portfolio.mapper.PessoaMapper;
 import com.empresa.portfolio.model.Pessoa;
 import com.empresa.portfolio.repository.PessoaRepository;
 import com.empresa.portfolio.service.PessoaService;
@@ -15,13 +17,17 @@ public class PessoaServiceImpl implements PessoaService {
     private PessoaRepository pessoaRepository;
 
     @Override
-    public List<Pessoa> buscarGerentes() {
-        return pessoaRepository.findByGerenteTrue();
+    public List<PessoaDTO> buscarGerentes() {
+        return pessoaRepository.findByGerenteTrue()
+                .stream()
+                .map(PessoaMapper::toDTO)
+                .toList();
     }
 
     @Override
-    public Pessoa buscarPorId(Long id) {
-        return pessoaRepository.findById(id)
+    public PessoaDTO buscarPorId(Long id) {
+        Pessoa pessoa = pessoaRepository.findById(id)
                 .orElseThrow(() -> new EntityNotFoundException("Pessoa não encontrada: " + id));
+        return PessoaMapper.toDTO(pessoa);
     }
 }

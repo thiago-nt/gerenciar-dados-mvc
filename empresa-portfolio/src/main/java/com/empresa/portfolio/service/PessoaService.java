@@ -1,12 +1,12 @@
 package com.empresa.portfolio.service;
 
-import com.empresa.portfolio.model.Pessoa;
+import com.empresa.portfolio.dto.PessoaDTO;
 import java.util.List;
 
 public interface PessoaService {
 
-    List<Pessoa> buscarGerentes();
+    List<PessoaDTO> buscarGerentes();
 
-    Pessoa buscarPorId(Long id);
+    PessoaDTO buscarPorId(Long id);
 
 }

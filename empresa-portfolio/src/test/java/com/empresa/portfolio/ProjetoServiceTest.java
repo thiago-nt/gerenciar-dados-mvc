@@ -1,6 +1,6 @@
 package com.empresa.portfolio;
 
-import com.empresa.portfolio.enumeration.StatusProjeto;
+import com.empresa.portfolio.common.enums.StatusProjeto;
 import com.empresa.portfolio.model.Projeto;
 import com.empresa.portfolio.repository.ProjetoRepository;
 import com.empresa.portfolio.service.impl.ProjetoServiceImpl;
@@ -34,7 +34,7 @@ class ProjetoServiceTest {
 		when(projetoRepository.findById(1L)).thenReturn(Optional.of(projeto));
 
 		IllegalStateException ex = assertThrows(IllegalStateException.class, () -> {
-			projetoService.excluirProjetoComValidacao(1L);
+			projetoService.excluir(1L);
 		});
 
 		assertEquals("Não é possível excluir um projeto com status: INICIADO", ex.getMessage());
@@ -48,7 +48,7 @@ class ProjetoServiceTest {
 		projeto.setStatus(StatusProjeto.PLANEJADO);
 
 		when(projetoRepository.findById(2L)).thenReturn(Optional.of(projeto));
-		projetoService.excluirProjetoComValidacao(2L);
+		projetoService.excluir(2L);
 		verify(projetoRepository).deleteById(2L);
 	}
 }

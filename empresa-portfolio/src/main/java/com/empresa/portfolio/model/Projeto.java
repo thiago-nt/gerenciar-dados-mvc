@@ -1,6 +1,6 @@
 package com.empresa.portfolio.model;
-import com.empresa.portfolio.enumeration.RiscoProjeto;
-import com.empresa.portfolio.enumeration.StatusProjeto;
+import com.empresa.portfolio.common.enums.RiscoProjeto;
+import com.empresa.portfolio.common.enums.StatusProjeto;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.*;
 import lombok.*;

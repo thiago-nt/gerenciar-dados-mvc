@@ -1,7 +1,6 @@
 package com.empresa.portfolio.dto;
-
-import com.empresa.portfolio.enumeration.RiscoProjeto;
-import com.empresa.portfolio.enumeration.StatusProjeto;
+import com.empresa.portfolio.common.enums.RiscoProjeto;
+import com.empresa.portfolio.common.enums.StatusProjeto;
 import com.empresa.portfolio.model.Pessoa;
 import com.empresa.portfolio.model.Projeto;
 import lombok.*;
@@ -24,6 +23,7 @@ public class ProjetoDTO {
     private Double orcamento;
     private RiscoProjeto risco;
     private Long gerenteId;
+    private Pessoa gerente;
 
     public ProjetoDTO(Projeto projeto) {
         DateTimeFormatter fmt = DateTimeFormatter.ISO_LOCAL_DATE;
@@ -37,6 +37,7 @@ public class ProjetoDTO {
         this.orcamento        = projeto.getOrcamento();
         this.risco            = projeto.getRisco();
         this.gerenteId        = projeto.getGerente() != null ? projeto.getGerente().getId() : null;
+        this.gerente          = projeto.getGerente();
     }
 
     private String formatar(LocalDate d, DateTimeFormatter fmt) {

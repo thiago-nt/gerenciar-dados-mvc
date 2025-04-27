@@ -1,4 +1,4 @@
-package com.empresa.portfolio.enumeration;
+package com.empresa.portfolio.common.enums;
 
 import lombok.Getter;
 
